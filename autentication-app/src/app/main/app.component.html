@@ -1,0 +1,12 @@
+<button type="button" class="btn btn-default" (click)="volver()"> Volver </button>
+
+<h3>Usuarios</h3>
+<div class="row">
+  <div class="col-md-6">
+    <ul class="list-group">
+      <li *ngFor="let u of usuarioList" class="list-group-item">
+        <a href="javascript:void(0)" (click)="mostrarMensaje( u )">{{ u.nickname }}</a>
+      </li>
+    </ul>
+  </div>
+</div>

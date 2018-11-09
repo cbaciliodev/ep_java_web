@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="row justify-content-md-center">
+    <div class="col col-md-4">
+      <h1>Autenticación de usuario</h1>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="txtUsuario">Usuario</label>
+          <input  type="text" id="txtUsuario" class="form-control" 
+                  formControlName="usuario" placeholder="Ingrese su usuario" />
+        </div>
+        <div class="form-group">
+          <label for="txtUsuario">Contraseña</label>
+          <input  type="password" id="txtContraseña" class="form-control" 
+                  formControlName="clave" placeholder="Ingrese su contraseña" />
+        </div>
+        <button type="submit" class="btn btn-primary">Autenticar</button> <br >
+        <button type="button" class="btn btn-default" (click)="cancelar()"> Cancelar </button>
+      </form>
+    </div>
+  </div>
+</div>
