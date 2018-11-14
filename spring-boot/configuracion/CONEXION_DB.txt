@@ -1,0 +1,4 @@
+HOST: oracle.csfdvy0sgvqt.us-west-2.rds.amazonaws.com
+SID: ORCL
+Username: oracle
+Password: admin2018
