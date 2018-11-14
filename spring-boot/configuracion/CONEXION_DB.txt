@@ -2,3 +2,11 @@ HOST: oracle.csfdvy0sgvqt.us-west-2.rds.amazonaws.com
 SID: ORCL
 Username: oracle
 Password: admin2018
+
+
+
+jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+sa
+sa
+java:jboss/datasources/ExampleDS
+ExampleDS
