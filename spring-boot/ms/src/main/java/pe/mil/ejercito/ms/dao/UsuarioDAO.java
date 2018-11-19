@@ -10,4 +10,8 @@ import pe.mil.ejercito.ms.model.Usuario;
 public interface UsuarioDAO {
 	
 	public List<Usuario> list();
+	
+	public Usuario obtenerUsuarioByNickname( String nickname );
+	
+	public boolean validarUsuario( String nickname, String password );
 }

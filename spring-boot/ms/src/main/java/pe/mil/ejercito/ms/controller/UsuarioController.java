@@ -36,6 +36,31 @@ public class UsuarioController {
 		return usuarioService.findAll().get(0);
 	}
 	
+	@ApiOperation(value = "Retorna un usuariopor su nickname", response = Usuario.class)
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "Información obtenida con éxito"),
+			@ApiResponse(code = 400, message = SwaggerApiMessages.MESSAGE_400),
+			@ApiResponse(code = 401, message = SwaggerApiMessages.MESSAGE_401),
+			@ApiResponse(code = 404, message = SwaggerApiMessages.MESSAGE_404) })
+	@RequestMapping(value = "/byNickname/", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public Usuario getUsuarioByNickname( @RequestBody String nickname,  HttpServletResponse response, HttpServletRequest request) {
+		return usuarioService.obtenerUsuarioByNickname(nickname);
+	}
+	
+	@ApiOperation(value = "Valida si un usuario esta registrado en el sistema", response = Boolean.class)
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "Información obtenida con éxito"),
+			@ApiResponse(code = 400, message = SwaggerApiMessages.MESSAGE_400),
+			@ApiResponse(code = 401, message = SwaggerApiMessages.MESSAGE_401),
+			@ApiResponse(code = 404, message = SwaggerApiMessages.MESSAGE_404) })
+	@RequestMapping(value = "/isUsuario/", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public Boolean isUsuario( @RequestBody Usuario usuario,  HttpServletResponse response, HttpServletRequest request) {
+		try {
+			return usuarioService.validarUsuario(usuario.getNickname(), usuario.getPassword());	
+		}catch(Exception e) {
+			return false;
+		}
+		
+	}
+	
 	
 //	@ApiOperation(value = "Retorna solo un usuario de una lista completa", response = Usuario.class)
 //	@ApiResponses(value = { @ApiResponse(code = 200, message = "Información obtenida con éxito"),

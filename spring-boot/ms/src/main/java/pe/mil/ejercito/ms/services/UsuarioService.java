@@ -7,4 +7,8 @@ import pe.mil.ejercito.ms.model.Usuario;
 public interface UsuarioService {
 	
 	public List<Usuario> findAll();
+	
+	public Usuario obtenerUsuarioByNickname( String nickname );
+	
+	public boolean validarUsuario( String nickname, String password );
 }

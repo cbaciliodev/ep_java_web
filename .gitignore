@@ -25,3 +25,4 @@ spring-boot/ms/src/test/\.DS_Store
 spring-boot/commons/\.classpath
 
 spring-boot/commons/\.project
+/spring-boot/commons2/target/

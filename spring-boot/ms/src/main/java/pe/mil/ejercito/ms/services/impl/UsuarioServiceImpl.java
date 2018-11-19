@@ -20,4 +20,12 @@ public class UsuarioServiceImpl implements UsuarioService{
 		return usuarioDao.list();
 	}
 	
+	public Usuario obtenerUsuarioByNickname( String nickname ) {
+		return usuarioDao.obtenerUsuarioByNickname(nickname);
+	}
+	
+	public boolean validarUsuario( String nickname, String password ) {
+		return usuarioDao.validarUsuario(nickname, password);
+	}
+	
 }
