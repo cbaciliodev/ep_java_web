@@ -22,7 +22,7 @@ import pe.mil.ejercito.ms.exception.MsException;
 
 @Configuration
 @EnableTransactionManagement
-@ComponentScan(basePackages = { "pe.mil.ejercito.ms.dao.impl" })
+@ComponentScan(basePackages = { "pe.mil.ejercito.ms.*" })
 public class AppDaoConfig {
 
 	@Bean
@@ -54,7 +54,7 @@ public class AppDaoConfig {
 		try {
 			entityManagerFactoryBean.setDataSource(sigesDS());
 			entityManagerFactoryBean.setPersistenceProviderClass(HibernatePersistenceProvider.class);
-			entityManagerFactoryBean.setPackagesToScan("pe.mil.ejercito.ms.dao.impl");
+			entityManagerFactoryBean.setPackagesToScan("pe.mil.ejercito.ms.*");
 			entityManagerFactoryBean.setJpaProperties(additionalProperties());
 		} catch (MsException e) {
 			e.printStackTrace();

@@ -219,7 +219,6 @@
 			<version>${hb.manager}</version>
 		</dependency>
 
-
 	</dependencies>
 
 	<build>
