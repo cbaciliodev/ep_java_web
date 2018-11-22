@@ -5,8 +5,10 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 
+import org.hibernate.Query;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,21 +16,22 @@ import pe.mil.ejercito.ms.dao.UsuarioDAO;
 import pe.mil.ejercito.ms.model.Usuario;
 
 @Repository
+@Transactional
 public class UsuarioDAOImpl implements UsuarioDAO{
 
-	@PersistenceContext
-	private EntityManager em;
+	@Autowired
+	private SessionFactory em;
 	
 	public boolean validarUsuario( String nickname, String password ) {
 		
 		Usuario usuario = null;
 		
-		Query q = em.createQuery("select u from Usuario u where "
+		Query q = em.getCurrentSession().createQuery("select u from Usuario u where "
 				+ "u.nickname=:nickname and u.password=:password");
 		q.setParameter("nickname", nickname);
 		q.setParameter("password", password);
 		
-		usuario = (Usuario)q.getSingleResult();
+		usuario = (Usuario)q.uniqueResult();
 		
 		return usuario!=null;
 		
@@ -37,11 +40,11 @@ public class UsuarioDAOImpl implements UsuarioDAO{
 	public List<Usuario> list(){
 		List<Usuario> usuarioLst = new ArrayList<>();
 		
-		Query q = em.createQuery("select u from Usuario u");
+		Query q = em.getCurrentSession().createQuery("select u from Usuario u");
 		/**
 		 * Retorna una lista
 		 */
-		usuarioLst = q.getResultList(); 
+		usuarioLst = q.list(); 
 		
 		return usuarioLst;
 	}
@@ -50,23 +53,23 @@ public class UsuarioDAOImpl implements UsuarioDAO{
 		
 		Usuario usuario = null;
 		
-		Query q = em.createQuery("select u from Usuario u where u.nickname=:nickname");
+		Query q = em.getCurrentSession().createQuery("select u from Usuario u where u.nickname=:nickname");
 		q.setParameter("nickname", nickname);
 		
 		/**
 		 * Retorna un único objeto, libera una excepción si la consulta 
 		 * retorna mas de un objeto
 		 */
-		usuario = (Usuario) q.getSingleResult(); 
+		usuario = (Usuario) q.uniqueResult(); 
 		
 		return usuario;
 		
 	}
 	
-	@Transactional
+	
 	public Usuario guardarUsuario(Usuario usuario) {
 		
-		em.persist(usuario);
+		em.getCurrentSession().persist(usuario);
 		return usuario;
 	}
 	
