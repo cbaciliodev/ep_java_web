@@ -8,6 +8,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import pe.mil.ejercito.ms.dao.UsuarioDAO;
 import pe.mil.ejercito.ms.model.Usuario;
@@ -62,6 +63,12 @@ public class UsuarioDAOImpl implements UsuarioDAO{
 		
 	}
 	
+	@Transactional
+	public Usuario guardarUsuario(Usuario usuario) {
+		
+		em.persist(usuario);
+		return usuario;
+	}
 	
 	
 }

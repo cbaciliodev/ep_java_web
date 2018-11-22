@@ -14,4 +14,6 @@ public interface UsuarioDAO {
 	public Usuario obtenerUsuarioByNickname( String nickname );
 	
 	public boolean validarUsuario( String nickname, String password );
+	
+	public Usuario guardarUsuario(Usuario usuario);
 }

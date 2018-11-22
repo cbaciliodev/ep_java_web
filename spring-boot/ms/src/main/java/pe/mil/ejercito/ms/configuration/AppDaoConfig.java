@@ -90,6 +90,7 @@ public class AppDaoConfig {
 	Properties additionalProperties() {
 		Properties properties = new Properties();
 		properties.setProperty("hibernate.connection.datasource", "java:/msDS");
+		properties.setProperty("hibernate.connection.autocommit ", "true");
 		properties.setProperty("hibernate.dialect", "org.hibernate.dialect.Oracle10gDialect");
 		properties.setProperty("show_sql", "true");
 		return properties;

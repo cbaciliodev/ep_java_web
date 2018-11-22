@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -11,8 +12,10 @@ import javax.persistence.Table;
 public class Usuario {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(generator="sq_usuario")
+	@SequenceGenerator(name="sq_usuario",sequenceName="\"sq_usuario\"", allocationSize=1)
 	private Long id;
+	
 	private String nickname;
 	private String password;
 	private Integer estado;
